@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from datetime import datetime, time, date
+from datetime import date, datetime
 
 
 class ResPartner(models.Model):
@@ -23,8 +23,10 @@ class ResPartner(models.Model):
             if vals['allow_birthdate_notification'] == True:
                 self.env['calendar.event'].create({
                     'name': 'Cumpleaños Cliente: ' + vals['name'],
-                    'start': date.today().strftime("%Y") + vals['birthdate_date'][4:10],
-                    'stop': date.today().strftime("%Y") + vals['birthdate_date'][4:10],
+                    'start': date.today().strftime("%Y")
+                    + vals['birthdate_date'][4:10],
+                    'stop': date.today().strftime("%Y")
+                    + vals['birthdate_date'][4:10],
                     'allday': True,
                     'show_as': 'free',
                     'recurrency': True,
@@ -51,8 +53,10 @@ class ResPartner(models.Model):
                     })
                 self.env['calendar.event'].create({
                     'name': 'Cumpleaños Cliente: ' + self.name,
-                    'start': date.today().strftime("%Y") + vals['birthdate_date'][4:10],
-                    'stop': date.today().strftime("%Y") + vals['birthdate_date'][4:10],
+                    'start': date.today().strftime("%Y")
+                    + vals['birthdate_date'][4:10],
+                    'stop': date.today().strftime("%Y")
+                    + vals['birthdate_date'][4:10],
                     'allday': True,
                     'show_as': 'free',
                     'recurrency': True,
@@ -72,8 +76,10 @@ class ResPartner(models.Model):
                     'partner_contact_birthday_on_calendar.categ_meet_birthday')
                 self.env['calendar.event'].create({
                     'name': 'Cumpleaños Cliente: ' + record.name,
-                    'start': date.today().strftime("%Y") + record.birthdate_date.strftime("-%m-%d"),
-                    'stop': date.today().strftime("%Y") + record.birthdate_date.strftime("-%m-%d"),
+                    'start': date.today().strftime("%Y")
+                    + record.birthdate_date.strftime("-%m-%d"),
+                    'stop': date.today().strftime("%Y")
+                    + record.birthdate_date.strftime("-%m-%d"),
                     'allday': True,
                     'show_as': 'free',
                     'recurrency': True,
@@ -100,11 +106,14 @@ class ResPartner(models.Model):
                     continue
                 else:
                     category = self.env.ref(
-                        'partner_contact_birthday_on_calendar.categ_meet_birthday')
+                        'partner_contact_birthday_on_calendar.'
+                        + 'categ_meet_birthday')
                     self.env['calendar.event'].create({
                         'name': 'Cumpleaños Cliente: ' + record.name,
-                        'start': str(next_year) + record.birthdate_date.strftime("-%m-%d"),
-                        'stop': str(next_year) + record.birthdate_date.strftime("-%m-%d"),
+                        'start': str(next_year)
+                        + record.birthdate_date.strftime("-%m-%d"),
+                        'stop': str(next_year)
+                        + record.birthdate_date.strftime("-%m-%d"),
                         'allday': True,
                         'show_as': 'free',
                         'partner_ids': False,

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Contacts Birthday Event on Calendar",
+    'name': "Contacts Birthday on Calendar",
     'summary': """
-        Añade recordatorios de los cumpleaños de los contactos al calendario""",
+        Añade los cumpleaños de los contactos al calendario""",
     'author': "Inma Sánchez y Carlos Ramos",
     'website': "https://github.com/EDallas89",
     'category': 'Extra Tools',
