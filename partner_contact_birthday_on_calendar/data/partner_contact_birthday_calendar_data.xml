@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="calendar.event.type" id="categ_meet_birthday">
+        <field name="name">Birthday</field>
+    </record>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="birthday_on_calendar_notification_view" model="ir.ui.view">
+        <field name="name">birthday_on_calendar_notification</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="partner_contact_personal_information_page.personal_information"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='birthdate_date']" position="after">
+                <field name="allow_birthdate_notification" type="checkbox"
+                attrs="{'invisible': [('birthdate_date', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
