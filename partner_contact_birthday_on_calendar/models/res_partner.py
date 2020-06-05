@@ -45,27 +45,32 @@ class ResPartner(models.Model):
                 event = self.env['calendar.event'].search([
                     ('name', '=', 'Cumpleaños Cliente: ' + self.name),
                 ])
-                category = self.env.ref(
-                    'partner_contact_birthday_on_calendar.categ_meet_birthday')
                 if event:
-                    event.write({
-                        'active': False,
+                    for record in event:
+                        year = record.start.strftime("%Y")
+                        record.write({
+                            'start': year + vals['birthdate_date'][4:10],
+                            'stop': year + vals['birthdate_date'][4:10],
+                        })
+                else:
+                    category = self.env.ref(
+                        'partner_contact_birthday_on_calendar.'
+                        + 'categ_meet_birthday')
+                    self.env['calendar.event'].create({
+                        'name': 'Cumpleaños Cliente: ' + self.name,
+                        'start': date.today().strftime("%Y")
+                        + vals['birthdate_date'][4:10],
+                        'stop': date.today().strftime("%Y")
+                        + vals['birthdate_date'][4:10],
+                        'allday': True,
+                        'show_as': 'free',
+                        'recurrency': True,
+                        'rrule_type': 'yearly',
+                        'count': 2,
+                        'partner_ids': False,
+                        'user_id': False,
+                        'categ_ids': [[4, category.id]],
                     })
-                self.env['calendar.event'].create({
-                    'name': 'Cumpleaños Cliente: ' + self.name,
-                    'start': date.today().strftime("%Y")
-                    + vals['birthdate_date'][4:10],
-                    'stop': date.today().strftime("%Y")
-                    + vals['birthdate_date'][4:10],
-                    'allday': True,
-                    'show_as': 'free',
-                    'recurrency': True,
-                    'rrule_type': 'yearly',
-                    'count': 2,
-                    'partner_ids': False,
-                    'user_id': False,
-                    'categ_ids': [[4, category.id]],
-                })
         return res
 
     @api.model
