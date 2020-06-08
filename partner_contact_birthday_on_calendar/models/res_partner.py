@@ -20,7 +20,9 @@ class ResPartner(models.Model):
         category = self.env.ref(
             'partner_contact_birthday_on_calendar.categ_meet_birthday')
         if vals['birthdate_date']:
-            if vals['allow_birthdate_notification'] == True:
+            if ('allow_birthdate_notification' in vals
+                and vals['allow_birthdate_notification']
+                    or self.allow_birthdate_notification):
                 self.env['calendar.event'].create({
                     'name': 'Cumpleaños Cliente: ' + vals['name'],
                     'start': date.today().strftime("%Y")
@@ -41,8 +43,11 @@ class ResPartner(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if 'birthdate_date' in vals and vals['birthdate_date']:
-            if self.allow_birthdate_notification == True:
+            if ('allow_birthdate_notification' in vals
+                and vals['allow_birthdate_notification']
+                    or self.allow_birthdate_notification):
                 event = self.env['calendar.event'].search([
+                    ('categ_ids', '=', 'Birthday'),
                     ('name', '=', 'Cumpleaños Cliente: ' + self.name),
                 ])
                 if event:
@@ -103,7 +108,7 @@ class ResPartner(models.Model):
             if (record.birthdate_date
                     and record.allow_birthdate_notification):
                 event = self.env['calendar.event'].search([
-                    ('name', 'ilike', record.name),
+                    ('name', '=', 'Cumpleaños Cliente: ' + record.name),
                     ('start', '=', str(next_year) +
                      record.birthdate_date.strftime("-%m-%d"))
                 ])
@@ -130,6 +135,7 @@ class ResPartner(models.Model):
     def _constrains_allow_birthdate_notification(self):
         if self.allow_birthdate_notification == False:
             event = self.env['calendar.event'].search([
+                ('categ_ids', '=', 'Birthday'),
                 ('name', '=', 'Cumpleaños Cliente: ' + self.name),
             ])
             if event:
@@ -138,6 +144,7 @@ class ResPartner(models.Model):
                 })
         else:
             event = self.env['calendar.event'].search([
+                ('categ_ids', '=', 'Birthday'),
                 ('name', '=', 'Cumpleaños Cliente: ' + self.name),
                 ('active', '=', False)
             ])
