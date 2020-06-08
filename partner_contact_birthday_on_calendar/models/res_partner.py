@@ -15,7 +15,7 @@ class ResPartner(models.Model):
     )
 
     birthday_text = fields.Char(
-        string = 'Partner Birthday: '
+        string='Partner Birthday: '
     )
 
     @api.model
@@ -28,7 +28,8 @@ class ResPartner(models.Model):
                 and vals['allow_birthdate_notification']
                     or self.allow_birthdate_notification):
                 self.env['calendar.event'].create({
-                    'name': self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + vals['name'], 
+                    'name': (self.env['ir.translation'].get_field_string(
+                        self._name)['birthday_text']) + vals['name'],
                     'start': date.today().strftime("%Y")
                     + vals['birthdate_date'][4:10],
                     'stop': date.today().strftime("%Y")
@@ -52,7 +53,8 @@ class ResPartner(models.Model):
                     or self.allow_birthdate_notification):
                 event = self.env['calendar.event'].search([
                     ('categ_ids', '=', 'Birthday'),
-                    ('name', '=', self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + self.name),
+                    ('name', '=', (self.env['ir.translation'].get_field_string(
+                        self._name)['birthday_text']) + self.name),
                 ])
                 if event:
                     for record in event:
@@ -66,7 +68,8 @@ class ResPartner(models.Model):
                         'partner_contact_birthday_on_calendar.'
                         + 'categ_meet_birthday')
                     self.env['calendar.event'].create({
-                        'name': self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + self.name,
+                        'name': (self.env['ir.translation'].get_field_string(
+                            self._name)['birthday_text']) + self.name,
                         'start': date.today().strftime("%Y")
                         + vals['birthdate_date'][4:10],
                         'stop': date.today().strftime("%Y")
@@ -89,7 +92,8 @@ class ResPartner(models.Model):
                 category = self.env.ref(
                     'partner_contact_birthday_on_calendar.categ_meet_birthday')
                 self.env['calendar.event'].create({
-                    'name': self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + record.name,
+                    'name': (self.env['ir.translation'].get_field_string(
+                        self._name)['birthday_text']) + record.name,
                     'start': date.today().strftime("%Y")
                     + record.birthdate_date.strftime("-%m-%d"),
                     'stop': date.today().strftime("%Y")
@@ -112,7 +116,8 @@ class ResPartner(models.Model):
             if (record.birthdate_date
                     and record.allow_birthdate_notification):
                 event = self.env['calendar.event'].search([
-                    ('name', '=', self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + record.name),
+                    ('name', '=', (self.env['ir.translation'].get_field_string(
+                        self._name)['birthday_text']) + record.name),
                     ('start', '=', str(next_year) +
                      record.birthdate_date.strftime("-%m-%d"))
                 ])
@@ -123,7 +128,8 @@ class ResPartner(models.Model):
                         'partner_contact_birthday_on_calendar.'
                         + 'categ_meet_birthday')
                     self.env['calendar.event'].create({
-                        'name': self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + record.name,
+                        'name': (self.env['ir.translation'].get_field_string(
+                            self._name)['birthday_text']) + record.name,
                         'start': str(next_year)
                         + record.birthdate_date.strftime("-%m-%d"),
                         'stop': str(next_year)
@@ -140,7 +146,8 @@ class ResPartner(models.Model):
         if self.allow_birthdate_notification == False:
             event = self.env['calendar.event'].search([
                 ('categ_ids', '=', 'Birthday'),
-                ('name', '=', self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + self.name),
+                ('name', '=', (self.env['ir.translation'].get_field_string(
+                    self._name)['birthday_text']) + self.name),
             ])
             if event:
                 event.write({
@@ -149,7 +156,8 @@ class ResPartner(models.Model):
         else:
             event = self.env['calendar.event'].search([
                 ('categ_ids', '=', 'Birthday'),
-                ('name', '=', self.env['ir.translation'].get_field_string(self._name)['birthday_text'] + self.name),
+                ('name', '=', (self.env['ir.translation'].get_field_string(
+                    self._name)['birthday_text']) + self.name),
                 ('active', '=', False)
             ])
             if event:
