@@ -51,7 +51,7 @@ class ResPartner(models.Model):
                 and vals['allow_birthdate_notification']
                     or self.allow_birthdate_notification):
                 event = self.env['calendar.event'].search([
-                    ('categ_ids', '=', 'Birthday'),
+                    ('categ_ids', '=', 'Cumpleaños'),
                     ('name', '=', (self.env['ir.translation'].get_field_string(
                         self._name)['birthday_text']) + self.name),
                 ])
@@ -138,7 +138,7 @@ class ResPartner(models.Model):
     def _constrains_allow_birthdate_notification(self):
         if self.allow_birthdate_notification == False:
             event = self.env['calendar.event'].search([
-                ('categ_ids', '=', 'Birthday'),
+                ('categ_ids', '=', 'Cumpleaños'),
                 ('name', '=', (self.env['ir.translation'].get_field_string(
                     self._name)['birthday_text']) + self.name),
             ])
@@ -148,7 +148,7 @@ class ResPartner(models.Model):
                 })
         else:
             event = self.env['calendar.event'].search([
-                ('categ_ids', '=', 'Birthday'),
+                ('categ_ids', '=', 'Cumpleaños'),
                 ('name', '=', (self.env['ir.translation'].get_field_string(
                     self._name)['birthday_text']) + self.name),
                 ('active', '=', False)
