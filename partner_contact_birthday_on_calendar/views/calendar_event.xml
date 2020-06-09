@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_search" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='mymeetings']" position="after">
-                <filter string="Birthday" name="birthday_filter" domain="[('categ_ids', '=', 'Birthday')]" />
+                <filter string="Cumpleaños" name="birthday_filter" domain="[('categ_ids', '=', 'Cumpleaños')]" />
             </xpath>
         </field>
     </record>
