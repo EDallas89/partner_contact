@@ -15,7 +15,9 @@ class ResPartner(models.Model):
     )
 
     birthday_text = fields.Char(
-        string='Partner Birthday: '
+        # Modify when fix traductions on ir.cron
+        #string='Partner Birthday: '
+        string='Cumpleaños Cliente: '
     )
 
     @api.model

@@ -14,11 +14,15 @@
 #. In calendar view, active *Everybody's calendars*.
 
 
-- CONFIGURE:
-For use this module on Spanish:
-#. Wait a few minutes to Odoo load tanslations or follow the next steps:
+- CONFIGURE (Unused until fix traductions on ir.cron):
+For use this module on Spanish follow the next steps:
     #. Active developer mode.
     #. Go to *Settings > Translations > Load a Translation*.
+    #. Select *Spanish* for lang field.
+    #. If *partner_contact_birthdate* module is previously installed follow the next steps for generate events for previus partner's birthdate:
+        #. Go to *Settings > Technical > Scheduled Actions*.
+        #. Open the action *Contacts Birthday on Calendar: Previus Contacts*.
+        #. Use *Run Manually* button.
 
 To modify Scheduled Action:
 #. Active developer mode.
@@ -26,6 +30,7 @@ To modify Scheduled Action:
 #. Open the action *Contacts Birthday on Calendar*.
 #. Modify *Execute Every* field to change execution interval (optional).
 #. Modify *Next Execution Date* field to change execution hour or first execution (optional).
+
 
 - CONTRIBUTORS
 * `Aresoltec Canarias, S.L`_:
