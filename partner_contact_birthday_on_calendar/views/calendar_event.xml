@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="birthday_on_calendar_notification_filter" model="ir.ui.view">
+        <field name="name">birthday_on_calendar_notification_filter</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='mymeetings']" position="after">
+                <filter string="Birthday" name="birthday_filter" domain="[('categ_ids', '=', 'Birthday')]" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -11,12 +11,16 @@
 #. In the form view, click on *Personal Information* page.
 #. Select a date on *Birthdate* field.
 #. Active *Allow Birthdate Notification* field (active by default)
+#. In calendar view, active *Everybody's calendars*.
 
 
 - CONFIGURE:
+For use this module on Spanish:
+#. Wait a few minutes to Odoo load tanslations or follow the next steps:
+    #. Active developer mode.
+    #. Go to *Settings > Translations > Load a Translation*.
 
 To modify Scheduled Action:
-
 #. Active developer mode.
 #. Go to *Settings > Technical > Scheduled Actions*.
 #. Open the action *Contacts Birthday on Calendar*.

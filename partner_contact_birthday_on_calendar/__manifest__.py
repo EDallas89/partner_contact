@@ -16,6 +16,7 @@
         'data/partner_contact_birthday_calendar_data.xml',
         'views/partner_contact_birthday_calendar_cron.xml',
         'views/res_partner.xml',
+        'views/calendar_event.xml',
     ],
     'installable': True,
     'application': True,

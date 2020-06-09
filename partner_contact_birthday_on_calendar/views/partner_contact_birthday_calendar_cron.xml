@@ -7,6 +7,7 @@
 		<field name="interval_type">days</field>
 		<field name="numbercall">1</field>
 		<field name="doall" eval="True" />
+		<field name="nextcall" eval="(DateTime.now() + timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
 		<field name="state">code</field>
 		<field name="code">model.cron_previus_contacts(None)</field>
 	</record>
@@ -14,10 +15,10 @@
 		<field name="name">Contacts Birthday on Calendar</field>
 		<field name="model_id" ref="model_res_partner" />
 		<field name="interval_number">1</field>
-		<field name="interval_type">months</field>
+		<field name="interval_type">days</field>
 		<field name="numbercall">-1</field>
 		<field name="doall" eval="True" />
-		<field name="nextcall" eval="datetime.now(pytz.timezone('UTC')).strftime('%Y-%m-15 00:00:00')"/>
+		<field name="nextcall" eval="datetime.now(pytz.timezone('UTC')).strftime('%Y-%m-%d %H:%M:%S')"/>
 		<field name="state">code</field>
 		<field name="code">model.cron_standard_event(None)</field>
 	</record>
