@@ -1,9 +1,8 @@
 {
     'name': "Contacts Birthday Wishes",
-    'summary': 'Send Birthday Greetings Email to Contacts',
-    'author': 'Inma Sánchez, '
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/partner-contact',
+    'summary': 'Envía emails con felicitaciones de cumpleaños a los contactos.',
+    'author': 'Inma Sánchez',
+    'website': 'https://github.com/EDallas89/partner_contact',
     'license': 'AGPL-3',
     'category': "Extra Tools",
     'version': "12.0.1.0",

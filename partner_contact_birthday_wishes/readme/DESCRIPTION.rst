@@ -1,1 +1,0 @@
-This module add an Scheduled Action that check contact's birthday and send a Birthday Greeting by email with a default email template.
