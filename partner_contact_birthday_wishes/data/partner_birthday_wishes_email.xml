@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
-        <record id="partner_contact_birthday_wishes_email_template" model="mail.template">
-            <field name="name">Contacts Birthday Wishes</field>
-            <field name="subject">Happy Birthday ${object.name or 'n/a' }</field>
-            <field name="model_id" ref="partner_contact_birthday_wishes.model_res_partner" />
-            <field name="auto_delete" eval="True" />
-            <field name="body_html">
-                <![CDATA[<html>
+  <data>
+    <record id="partner_contact_birthday_wishes_email_template" model="mail.template">
+      <field name="name">Contacts Birthday Wishes Email</field>
+      <field name="subject">Happy Birthday ${object.name or 'n/a' }</field>
+      <field name="model_id" ref="partner_contact_birthday_wishes.model_res_partner" />
+      <field name="auto_delete" eval="True" />
+      <field name="body_html">
+        <![CDATA[<html>
                     <head></head>
                     <body style="margin: 0; padding: 0;">
-                    <table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;">
+                    <table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #FFFFFF; border-collapse:separate;">
                         <tbody>
                           <!-- HEADER -->
                           <tr>
                             <td align="center" style="min-width: 590px;">
-                              <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                              <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: #FFFFFF; padding: 20px; border-collapse:separate;">
                                 <tr>
                                   <td valign="middle" align="right">
-                                    <img src="/logo.png?company=${object.company_id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}">
+                                    <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}">
                                   </td>
                                 </tr>
                               </table>
@@ -40,15 +40,15 @@
                           <!-- FOOTER -->
                           <tr>
                             <td align="center" style="min-width: 590px;">
-                              <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                              <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: #FFFFFF; padding: 20px; border-collapse:separate;">
                                 <tr>
-                                  <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                  <td valign="middle" align="left" style="color: #000000; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
                                     ${object.company_id.phone}
                                   </td>
-                                  <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                  <td valign="middle" align="left" style="color: #000000; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
                                     ${object.company_id.email}
                                   </td>
-                                  <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                  <td valign="middle" align="left" style="color: #000000; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
                                     ${object.company_id.website}
                                   </td>
                                 </tr>
@@ -60,7 +60,7 @@
                     </body>
                     </html>
                 ]]>
-            </field>
-        </record>
-    </data>
+      </field>
+    </record>
+  </data>
 </odoo>
