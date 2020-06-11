@@ -25,7 +25,7 @@ class ResPartner(models.Model):
         res = super().create(vals)
         category = self.env.ref(
             'partner_contact_birthday_on_calendar.categ_meet_birthday')
-        if vals['birthdate_date']:
+        if 'birthdate_date' in vals and vals['birthdate_date']:
             if ('allow_birthdate_notification' in vals
                 and vals['allow_birthdate_notification']
                     or self.allow_birthdate_notification):
@@ -157,3 +157,11 @@ class ResPartner(models.Model):
                 event.write({
                     'active': True,
                 })
+
+#    @api.onchange('active')
+#    def _onchange_active(self):
+#        if self.active == False:
+#            self.allow_birthdate_notification = False
+#        if self.active == True:
+#            self.allow_birthdate_notification = True
+#
