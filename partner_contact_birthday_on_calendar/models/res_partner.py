@@ -16,7 +16,7 @@ class ResPartner(models.Model):
 
     birthday_text = fields.Char(
         # Modify when fix traductions on ir.cron
-        #string='Partner Birthday: '
+        # string='Partner Birthday: '
         string='Cumpleaños Cliente: '
     )
 
@@ -37,7 +37,6 @@ class ResPartner(models.Model):
                     'stop': date.today().strftime("%Y")
                     + vals['birthdate_date'][4:10],
                     'allday': True,
-                    'show_as': 'free',
                     'partner_ids': False,
                     'user_id': False,
                     'categ_ids': [[4, category.id]],
@@ -45,25 +44,25 @@ class ResPartner(models.Model):
         return res
 
     def write(self, vals):
-        res = super().write(vals)
+        res=super().write(vals)
         if 'birthdate_date' in vals and vals['birthdate_date']:
             if ('allow_birthdate_notification' in vals
                 and vals['allow_birthdate_notification']
                     or self.allow_birthdate_notification):
-                event = self.env['calendar.event'].search([
+                event=self.env['calendar.event'].search([
                     ('categ_ids', '=', 'Cumpleaños'),
                     ('name', '=', (self.env['ir.translation'].get_field_string(
                         self._name)['birthday_text']) + self.name),
                 ])
                 if event:
                     for record in event:
-                        year = record.start.strftime("%Y")
+                        year=record.start.strftime("%Y")
                         record.write({
                             'start': year + vals['birthdate_date'][4:10],
                             'stop': year + vals['birthdate_date'][4:10],
                         })
                 else:
-                    category = self.env.ref(
+                    category=self.env.ref(
                         'partner_contact_birthday_on_calendar.'
                         + 'categ_meet_birthday')
                     self.env['calendar.event'].create({
@@ -74,18 +73,17 @@ class ResPartner(models.Model):
                         'stop': date.today().strftime("%Y")
                         + vals['birthdate_date'][4:10],
                         'allday': True,
-                        'show_as': 'free',
                         'partner_ids': False,
                         'user_id': False,
                         'categ_ids': [[4, category.id]],
                     })
         return res
 
-    @api.model
+    @ api.model
     def cron_previus_contacts(self, vals):
         for record in self.search([]):
             if record.birthdate_date:
-                category = self.env.ref(
+                category=self.env.ref(
                     'partner_contact_birthday_on_calendar.categ_meet_birthday')
                 self.env['calendar.event'].create({
                     'name': (self.env['ir.translation'].get_field_string(
@@ -95,20 +93,19 @@ class ResPartner(models.Model):
                     'stop': date.today().strftime("%Y")
                     + record.birthdate_date.strftime("-%m-%d"),
                     'allday': True,
-                    'show_as': 'free',
                     'partner_ids': False,
                     'user_id': False,
                     'categ_ids': [[4, category.id]],
                 })
 
-    @api.model
+    @ api.model
     def cron_standard_event(self, vals):
-        actual_year = datetime.now().year
-        next_year = actual_year + 1
+        actual_year=datetime.now().year
+        next_year=actual_year + 1
         for record in self.search([]):
             if (record.birthdate_date
                     and record.allow_birthdate_notification):
-                event = self.env['calendar.event'].search([
+                event=self.env['calendar.event'].search([
                     ('name', '=', (self.env['ir.translation'].get_field_string(
                         self._name)['birthday_text']) + record.name),
                     ('start', '=', str(next_year) +
@@ -117,7 +114,7 @@ class ResPartner(models.Model):
                 if event:
                     continue
                 else:
-                    category = self.env.ref(
+                    category=self.env.ref(
                         'partner_contact_birthday_on_calendar.'
                         + 'categ_meet_birthday')
                     self.env['calendar.event'].create({
@@ -128,16 +125,15 @@ class ResPartner(models.Model):
                         'stop': str(next_year)
                         + record.birthdate_date.strftime("-%m-%d"),
                         'allday': True,
-                        'show_as': 'free',
                         'partner_ids': False,
                         'user_id': False,
                         'categ_ids': [[4, category.id]],
                     })
 
-    @api.constrains('allow_birthdate_notification')
+    @ api.constrains('allow_birthdate_notification')
     def _constrains_allow_birthdate_notification(self):
         if self.allow_birthdate_notification == False:
-            event = self.env['calendar.event'].search([
+            event=self.env['calendar.event'].search([
                 ('categ_ids', '=', 'Cumpleaños'),
                 ('name', '=', (self.env['ir.translation'].get_field_string(
                     self._name)['birthday_text']) + self.name),
@@ -147,7 +143,7 @@ class ResPartner(models.Model):
                     'active': False,
                 })
         else:
-            event = self.env['calendar.event'].search([
+            event=self.env['calendar.event'].search([
                 ('categ_ids', '=', 'Cumpleaños'),
                 ('name', '=', (self.env['ir.translation'].get_field_string(
                     self._name)['birthday_text']) + self.name),
