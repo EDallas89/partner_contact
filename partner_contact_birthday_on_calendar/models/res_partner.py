@@ -109,7 +109,7 @@ class ResPartner(models.Model):
         next_year = actual_year + 1
         for record in self.search([]):
             if (record.birthdate_date
-                    and record.allow_birthdate_notification):
+                    and record.allow_birthdate_notification and record.active):
                 event = self.env['calendar.event'].search([
                     ('name', '=', (self.env['ir.translation'].get_field_string(
                         self._name)['birthday_text']) + record.name),
